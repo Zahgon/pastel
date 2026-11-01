@@ -2,11 +2,14 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/sharkdp/pastel/CICD.yml?style=flat-square)](https://github.com/sharkdp/pastel/actions)
 [![](https://img.shields.io/github/v/release/sharkdp/pastel?colorB=d7a400&style=flat-square)](https://github.com/sharkdp/pastel/releases)
-[![](https://img.shields.io/crates/l/pastel.svg?colorB=ff7155&style=flat-square)](https://crates.io/crates/pastel)
-[![](https://img.shields.io/crates/v/pastel.svg?colorB=ff69b4&style=flat-square)](https://crates.io/crates/pastel)
+![](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-ff7155?style=flat-square)
 
 
 `pastel` is a command-line tool to generate, analyze, convert and manipulate colors. It supports many different color formats and color spaces like RGB (sRGB), HSL, CIELAB, CIELCh as well as ANSI 8-bit and 24-bit representations.
+
+This is the JavaScript (Node.js) edition of `pastel`: the command line, its output and its error messages
+are the same as those of `pastel` v0.12.0. It needs Node.js 22 or newer and has no dependencies besides
+the Node.js standard library.
 
 ## In action
 
@@ -119,92 +122,34 @@ echo " word"
 
 ## Installation
 
-### On Debian-based systems
-
-You can download the latest Debian package from the [release page](https://github.com/sharkdp/pastel/releases) and install it via `dpkg`:
-``` bash
-wget "https://github.com/sharkdp/pastel/releases/download/v0.12.0/pastel_0.12.0_amd64.deb"
-sudo dpkg -i pastel_0.12.0_amd64.deb
-```
-
-Alternatively, `pastel` is available in the official Debian repositories (currently in testing and unstable):
-```bash
-sudo apt update
-sudo apt install pastel
-```
-
-### On Arch Linux
-
-You can install `pastel` from the [Extra](https://archlinux.org/packages/extra/x86_64/pastel/) repositories:
-```
-sudo pacman -S pastel
-```
-
-### On Nix
-
-You can install `pastel` from the [Nix package](https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/misc/pastel/default.nix):
-```
-nix-env --install pastel
-```
-
-### On MacOS
-
-You can install `pastel` via [Homebrew](https://formulae.brew.sh/formula/pastel)
-```
-brew install pastel
-```
-
-### On Windows
-
-You can install `pastel` via [Scoop](https://github.com/ScoopInstaller/Main/blob/master/bucket/pastel.json)
-```
-scoop install pastel
-```
-
-#### With Winget
-
-You can install `pastel` via [Winget](https://learn.microsoft.com/en-us/windows/package-manager/):
-```bash
-winget install sharkdp.pastel
-```
-
-### Via snap package
-
-[Get it from the Snap Store](https://snapcraft.io/pastel):
-```
-sudo snap install pastel
-```
-
-### On NetBSD
-Using the package manager:
-```
-pkgin install pastel
-```
-
-From source:
-```
-cd /usr/pkgsrc/graphics/pastel
-make install
-```
-
-### On other distributions
-
-Check out the [release page](https://github.com/sharkdp/pastel/releases) for binary builds.
-
-### Via cargo (source)
-
-If you do not have cargo, install using [rust's installation documentation](https://doc.rust-lang.org/book/ch01-01-installation.html).
-
-If you have Rust 1.83 or higher, you can install `pastel` from source via `cargo`:
-```
-cargo install pastel
-```
-
-Alternatively, you can install `pastel` directly from this repository by using
+`pastel` needs [Node.js](https://nodejs.org/) 22 or newer. It has no npm dependencies, so there is
+nothing to build. Install it from a checkout of this repository with npm, which puts the `pastel`
+command on your `PATH`:
 ```
 git clone https://github.com/sharkdp/pastel
-cargo install --path ./pastel
+cd pastel
+npm install --global .
 ```
+
+You can also run it in place without installing anything:
+```
+node bin/pastel.js format hsl ff8000
+```
+
+The package tarballs attached to the [release page](https://github.com/sharkdp/pastel/releases) can be
+installed the same way (`npm install --global ./pastel-0.12.0.tgz`).
+
+## Development
+
+The library lives in `src/lib` (color spaces, the color parser, ANSI support, distinct colors) and the
+command line in `src/cli` (argument parsing, help texts and the subcommands). Run the tests with
+```
+npm test
+```
+
+`src/lib/pow.js` is a port of the `pow` function of
+[Arm Optimized Routines](https://github.com/ARM-software/optimized-routines), used under its MIT licence
+(the notice is at the top of that file).
 
 ## Resources
 
