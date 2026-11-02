@@ -1,0 +1,31 @@
+{
+  "name": "pastel",
+  "version": "0.12.0",
+  "description": "A command-line tool to generate, analyze, convert and manipulate colors",
+  "author": "David Peter <mail@david-peter.de>",
+  "homepage": "https://github.com/sharkdp/pastel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sharkdp/pastel"
+  },
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "bin": {
+    "pastel": "bin/pastel.js"
+  },
+  "exports": {
+    ".": "./src/lib/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  }
+}
